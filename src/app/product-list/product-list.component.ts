@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Item } from '../models/item';
 
 @Component({
@@ -30,4 +30,7 @@ export class ProductListComponent implements OnInit {
     }]
   }
 
+    addCart(item:Item):void{
+      window.alert(`${item.name} added to cart!`);
+    }
 }
