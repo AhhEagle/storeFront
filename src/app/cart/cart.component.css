@@ -68,7 +68,12 @@ img {
   margin: 10px 0;
 }
 .remove{
-  background-color: red;
-  padding:0 5px;
-  border-radius: 50%;
+  color: red;
+  font-weight: 600;
+  top: -10px;
+  position: relative;
+  right: -30px;
+  background: transparent;
+  font-size: small;
+
 }

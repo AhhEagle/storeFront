@@ -10,11 +10,12 @@ import { Item } from '../models/item';
 export class CartComponent implements OnInit {
   @Output() user: EventEmitter<string> = new EventEmitter<string>();
   cartList: Item[] = [];
+  totalSum: any = '';
   total: number = 0;
   fullName: string = '';
   address: string = '';
-  creditCard:string = ''
-  num:string = ''
+  creditCard: string = '';
+  num: string = '';
 
   constructor(private cartService: CartService) {}
 
@@ -29,40 +30,49 @@ export class CartComponent implements OnInit {
     alert('Cleared!');
   }
   getTotalValue() {
-    var total = 0;
+    var _total = 0;
     this.cartList.forEach(cart => {
-      total += cart.price * cart.value;
+      _total += cart.price * cart.value;
     });
-    return (this.total = total);
+    this.total = _total;
+    this.totalSum = Number(_total).toFixed(2);
   }
   submit() {
-    if(this.fullName.length >= 3 && this.address.length >= 6 && this.creditCard.length == 16){
-      localStorage.setItem('user', this.fullName);
-      const toString = this.total.toString();
-      localStorage.setItem('price', toString);
-      location.href='/confirmed'
-    }else{
-      alert('please fill in all appropriate information')
-    }
+    if(this.cartList.length >0){
+      if (
+        this.fullName.length >= 3 &&
+        this.address.length >= 6 &&
+        this.creditCard.length == 16
+      ) {
+        localStorage.setItem('user', this.fullName);
+        const toString = this.total.toString();
+        localStorage.setItem('price', toString);
+        location.href = '/confirmed';
+      } else {
+        alert('please fill in all appropriate information');
+      }
+
+    }else{alert('Please add item to cart')}
     
   }
-  remove(d:number){
-    alert(d)
-  const newCart: Item[] =  this.cartService.getCartList().filter((u)=>{
-       this. total = this.total -  (u.price * u.value);
-      return u.id != d
+  remove(d: number) {
+    const newCart: Item[] = this.cartService.getCartList().filter(u => {
+      this.total = this.total - (u.price * u.value);
+      return u.id != d;
     });
-    var newtotal = 0
+    var newtotal = 0;
     newCart.forEach(cart => {
       newtotal += cart.price * cart.value;
     });
     this.cartList = newCart;
-    localStorage.setItem('cartItems', JSON.stringify(newCart));
+    localStorage.setItem('cartItems', JSON.stringify(newCart));  
+    return (this.totalSum = newtotal);
+  }
+  changePrice(e: any) {}
 
-    return (this.total = newtotal);
+  onCreditCardChange(e: any) {
+    // if(this.creditCard.length > 16) {
+    //   this.creditCard = this.creditCard.substring(0)
+    // }
   }
-  changePrice(e: any){
-  
-  }
-    
 }

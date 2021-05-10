@@ -7,7 +7,7 @@
             <h1>
                 {{product[0].name}} <br>
                 <span class="price">
-                    {{product[0].price}}
+                    ${{product[0].price}}
                 </span>
             </h1>
             <p>Carry things arround town!</p>
@@ -24,6 +24,6 @@
             <option>10</option>
             </select>
             <button class="btn btn-primary" (click)="addCart(product[0])">Add to cart</button>
-            <a href=""> <img src="../../assets/icons8-left-arrow-24.png" alt=""> Back to product list</a>
+            <a routerLink=""> <img src="../../assets/icons8-left-arrow-24.png" alt=""> Back to product list</a>
         </div>
     </div>

@@ -1,35 +1,69 @@
 <div class="container">
-    <div class="row">
-        <div class="col col-sm-6 col-md-6 col-lg-6 items" >
-            <div *ngFor="let cart of cartList" class="item">
-                <img src="{{ cart.url }}" alt="">
-                <div class="details">
-                    <h5>{{cart.name}} <span (click)="remove(cart.id)" class="remove"> - </span></h5>
-                    <p id="tv">{{ cart.price * cart.value }}</p>
-                    <p>Amount  <input type="number" name="" id="" placeholder="{{ cart.value }}" min="0" (ngModelChange)='changePrice($event)' [ngModel]='cart.value'>
-                        <!-- <select name="" id="">
+  <div class="row">
+    <div class="col col-sm-6 col-md-6 col-lg-6 items">
+      <div *ngFor="let cart of cartList" class="item">
+        <img src="{{ cart.url }}" alt="" />
+        <div class="details">
+          <h5>
+            {{ cart.name }}
+            <span (click)="remove(cart.id)" class="remove">X</span>
+          </h5>
+          <p id="tv">${{ cart.price * cart.value }}</p>
+          <p>
+            Amount
+            <input
+              type="number"
+              name=""
+              id=""
+              placeholder="{{ cart.value }}"
+              min="0"
+              (ngModelChange)="changePrice($event)"
+              [ngModel]="cart.value"
+            />
+            <!-- <select name="" id="">
                             <option value="{{ cart.value }}">{{ cart.value }}</option>
                         </select> -->
-                    </p>
-                </div>
-            </div>
-            <h2 id="total">Total:  <span>{{total}}</span></h2>
+          </p>
         </div>
-        <div class="col col-sm-6 col-md-6 col-lg-6 details" >
-            <div class="contact">
-                <label for="fullName">Full Name</label>
-                <input type="text" placeholder="(min 3 characters)" [(ngModel)]="fullName" min="3" required>
-            </div>
-            <div class="contact">
-                <label for="Address">Address</label>
-                <input type="text" placeholder="(min 6 characters)" [(ngModel)]="address" min="6" required>
-            </div>
-            <div class="contact">
-                <label for="creditCard">Credit card</label>
-                <input type="text" placeholder="(16 digit number)"[(ngModel)]="creditCard" ngModel max="16" required>
-            </div>
-            <p>We'll never share your payment details with anyone else</p>
-            <button class="btn btn-primary" (click)='submit()'>Submit</button>
-        </div>
+      </div>
+      <h2 id="total">
+        Total: $<span>{{ totalSum }}</span>
+      </h2>
     </div>
+    <div class="col col-sm-6 col-md-6 col-lg-6 details">
+      <div class="contact">
+        <label for="fullName">Full Name</label>
+        <input
+          type="text"
+          placeholder="(min 3 characters)"
+          [(ngModel)]="fullName"
+          min="3"
+          required
+        />
+      </div>
+      <div class="contact">
+        <label for="Address">Address</label>
+        <input
+          type="text"
+          placeholder="(min 6 characters)"
+          [(ngModel)]="address"
+          min="6"
+          required
+        />
+      </div>
+      <div class="contact">
+        <label for="creditCard">Credit card</label>
+        <input
+          type="text"
+          placeholder="(16 digit number)"
+          [(ngModel)]="creditCard"
+          (ngModelChange)="onCreditCardChange($event)"
+          maxlength="16"
+          required
+        />
+      </div>
+      <p>We'll never share your payment details with anyone else</p>
+      <button class="btn btn-primary" (click)="submit()">Submit</button>
+    </div>
+  </div>
 </div>
