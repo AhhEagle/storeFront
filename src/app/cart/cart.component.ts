@@ -13,13 +13,14 @@ export class CartComponent implements OnInit {
   total: number = 0;
   fullName: string = '';
   address: string = '';
+  creditCard:string = ''
+  num:string = ''
 
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.cartList = this.cartService.getCartList();
     this.getTotalValue();
-    // this.getTotalValue()
   }
   clearCart(): void {
     this.cartService.clearCart();
@@ -35,14 +36,15 @@ export class CartComponent implements OnInit {
     return (this.total = total);
   }
   submit() {
-    if(this.fullName.length > 3){
+    if(this.fullName.length >= 3 && this.address.length >= 6 && this.creditCard.length == 16){
       localStorage.setItem('user', this.fullName);
       const toString = this.total.toString();
       localStorage.setItem('price', toString);
+      location.href='/confirmed'
     }else{
-      alert('please fill in full name')
+      alert('please fill in all appropriate information')
     }
-    location.href='/confirmed'
+    
   }
   remove(d:number){
     alert(d)
@@ -58,6 +60,9 @@ export class CartComponent implements OnInit {
     localStorage.setItem('cartItems', JSON.stringify(newCart));
 
     return (this.total = newtotal);
+  }
+  changePrice(e: any){
+  
   }
     
 }

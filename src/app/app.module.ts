@@ -11,7 +11,7 @@ import { ProductItemDetailComponent } from './product-item-detail/product-item-d
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CartComponent } from './cart/cart.component';
 import { HeaderComponent } from './layout/header/header.component';
-
+import { ReactiveFormsModule } from "@angular/forms";
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +22,7 @@ import { HeaderComponent } from './layout/header/header.component';
     CartComponent,
     HeaderComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })

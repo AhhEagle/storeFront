@@ -11,6 +11,7 @@ export class ProductItemComponent implements OnInit {
   @Output() addproduct: EventEmitter<Item> = new EventEmitter;
  
 totalNumber:number = 1
+num = 0
   constructor() { 
    
     this.product = {
@@ -32,7 +33,7 @@ totalNumber:number = 1
     this.addproduct.emit(product);
   }
   tlNum(event:any){
-    this.totalNumber = event.target.value
+    this.totalNumber = event
   }
   item(id:any){
     location.href=`/productdetails/${id}`

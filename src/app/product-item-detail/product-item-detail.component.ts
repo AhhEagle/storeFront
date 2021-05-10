@@ -16,6 +16,7 @@ export class ProductItemDetailComponent implements OnInit {
 
   product:any = []
   totalNumber: number = 1;
+  num:number = 0
 
   constructor(private route:ActivatedRoute, public getProduct:ProductsService, private cartService: CartService){ 
     this.header = "";
@@ -37,12 +38,12 @@ export class ProductItemDetailComponent implements OnInit {
     })
   }
   addCart(item:Item):void{
+    const getItem = this.cartService.getCartList()
     item.value = this.totalNumber
-    this.cartService.addToCart(item);
-    window.alert(`${item.name} added to cart!`);
+      this.cartService.addToCart(item);
   }
   tlNum(event:any){
-    this.totalNumber = event.target.value 
+    this.totalNumber = event 
   }
 
 }

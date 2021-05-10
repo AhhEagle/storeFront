@@ -19,9 +19,14 @@ export class CartService {
   }
   addToCart(cart: Item) {
     const currentCart = this.getCartList();
-    currentCart.push(cart);
-    localStorage.setItem('cartItems', JSON.stringify(currentCart));
-    return this.cartlist;
+    const found = currentCart.some(el => el.name == cart.name)
+    if(found){
+      alert('item already exist')
+    }else{
+      window.alert(`${cart.name} added to cart!`);
+      currentCart.push(cart);
+      localStorage.setItem('cartItems', JSON.stringify(currentCart));
+    }
   }
   clearCart() {
     this.cartlist = [];

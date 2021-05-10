@@ -8,7 +8,7 @@
         {{product.description}}
     </li>
 </ul> -->
-<div class = "item">
+<div class = "item col col-lg-9" >
     <app-product-item *ngFor="let product of products" [product] = "product" (addproduct)= "addCart($event)"></app-product-item>
 </div>
 

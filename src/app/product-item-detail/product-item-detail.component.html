@@ -11,7 +11,7 @@
                 </span>
             </h1>
             <p>Carry things arround town!</p>
-            <select name="" id="" (change)="tlNum($event)">
+            <select name="" id="" (ngModelChange)="tlNum($event)" [ngModel]="num" aria-placeholder="1">
             <option>1</option>
             <option>2</option>
             <option>3</option>
