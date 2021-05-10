@@ -10,7 +10,7 @@ export class ProductItemComponent implements OnInit {
   @Input() product: Item;
   @Output() addproduct: EventEmitter<Item> = new EventEmitter;
  
-
+totalNumber:number = 1
   constructor() { 
    
     this.product = {
@@ -18,15 +18,25 @@ export class ProductItemComponent implements OnInit {
       name: "",
       price: 1,
       url: "",
-      description: ""
+      description: "",
+      value: 1
     }
   }
 
   ngOnInit(): void {
   }
-  add(product:Item):void{
-    this.addproduct.emit(product);
 
+  add(product:Item):void{
+
+    product.value = this.totalNumber;
+    this.addproduct.emit(product);
+  }
+  tlNum(event:any){
+    this.totalNumber = event.target.value
+  }
+  item(id:any){
+    location.href=`/productdetails/${id}`
+    
   }
 
 }

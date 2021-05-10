@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { Item } from '../models/item';
 
@@ -8,17 +8,40 @@ import { Item } from '../models/item';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  @Output() user: EventEmitter<string> = new EventEmitter<string>();
   cartList: Item[] = [];
+  total: number = 0;
+  fullName: string = '';
+  address: string = '';
 
-  constructor(private cartService:  CartService) { }
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.cartList = this.cartService.getCartList();
+    this.getTotalValue();
+    // this.getTotalValue()
   }
   clearCart(): void {
     this.cartService.clearCart();
     this.cartList = [];
-    alert("Cleared!");
-  }
 
+    alert('Cleared!');
+  }
+  getTotalValue() {
+    var total = 0;
+    this.cartList.forEach(cart => {
+      total += cart.price * cart.value;
+    });
+    return (this.total = total);
+  }
+  submit() {
+    if(this.fullName.length > 3){
+      localStorage.setItem('user', this.fullName);
+      const toString = this.total.toString();
+      localStorage.setItem('price', toString);
+    }else{
+      alert('please fill in full name')
+    }
+    location.href='/confirmed'
+  }
 }

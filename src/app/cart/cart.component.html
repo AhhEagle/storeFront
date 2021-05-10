@@ -2,23 +2,23 @@
     <div class="row">
         <div class="col col-sm-6 col-md-6 col-lg-6 items" >
             <div *ngFor="let cart of cartList" class="item">
-                <img src="./assets/book.jpg" alt="">
+                <img src="{{ cart.url }}" alt="">
                 <div class="details">
-                    <h5>Title</h5>
-                    <p>{{ cart.price }}</p>
-                    <p>Amount 
-                        <select name="" id="">
-                            <option value="1">1</option>
-                        </select>
+                    <h5>{{cart.name}}</h5>
+                    <p id="tv">{{ cart.price * cart.value }}</p>
+                    <p>Amount  <input type="number" name="" id="" placeholder="{{ cart.value }}">
+                        <!-- <select name="" id="">
+                            <option value="{{ cart.value }}">{{ cart.value }}</option>
+                        </select> -->
                     </p>
                 </div>
             </div>
-            <h2 id="total">Total:  <span>$1000.00</span></h2>
+            <h2 id="total">Total:  <span>{{total}}</span></h2>
         </div>
         <div class="col col-sm-6 col-md-6 col-lg-6 details" >
             <div class="contact">
                 <label for="fullName">Full Name</label>
-                <input type="text" placeholder="(min 3 characters)">
+                <input type="text" placeholder="(min 3 characters)" [(ngModel)]="fullName">
             </div>
             <div class="contact">
                 <label for="Address">Address</label>
@@ -29,7 +29,7 @@
                 <input type="text" placeholder="(16 digit number)">
             </div>
             <p>We'll never share your payment details with anyone else</p>
-            <button class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary" (click)='submit()'>Submit</button>
         </div>
     </div>
 </div>

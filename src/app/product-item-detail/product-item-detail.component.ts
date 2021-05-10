@@ -1,4 +1,8 @@
 import { Component, OnInit, Input} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProductsService } from "../services/products.service";
+import { Item } from '../models/item';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-product-item-detail',
@@ -10,13 +14,35 @@ export class ProductItemDetailComponent implements OnInit {
   @Input() productlist:string;
   @Input() cart:string;
 
-  constructor() { 
+  product:any = []
+  totalNumber: number = 1;
+
+  constructor(private route:ActivatedRoute, public getProduct:ProductsService, private cartService: CartService){ 
     this.header = "";
     this.productlist = "";
     this.cart = "";
   }
 
   ngOnInit(): void {
+    this.getItem()
+  }
+  getItem(){
+    const id = this.route.snapshot.paramMap.get('id');
+   let num = Number(id)
+    const item = this.getProduct.getProducts().subscribe(res => {
+   const user = res.find((i)=>{
+    return i.id == num
+    })
+    this.product.push(user)
+    })
+  }
+  addCart(item:Item):void{
+    item.value = this.totalNumber
+    this.cartService.addToCart(item);
+    window.alert(`${item.name} added to cart!`);
+  }
+  tlNum(event:any){
+    this.totalNumber = event.target.value 
   }
 
 }

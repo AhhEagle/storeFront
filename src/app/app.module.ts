@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,9 +11,6 @@ import { ProductItemDetailComponent } from './product-item-detail/product-item-d
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CartComponent } from './cart/cart.component';
 import { HeaderComponent } from './layout/header/header.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-
 
 @NgModule({
   declarations: [
@@ -23,12 +22,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CartComponent,
     HeaderComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

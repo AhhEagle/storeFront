@@ -5,18 +5,25 @@ import { Item } from '../models/item';
   providedIn: 'root'
 })
 export class CartService {
-  cartlist: Item[] = []
+  cartlist: Item[] = [];
 
-  constructor() { }
+  constructor() {}
 
-  getCartList(){
+  getCartList() {
+    const getItems = localStorage.getItem('cartItems');
+    if (getItems == null) {
+      return [];
+    }
+    this.cartlist = <Item[]>JSON.parse(getItems);
     return this.cartlist;
   }
-  addToCart(cart: Item){
-    this.cartlist.push(cart);
+  addToCart(cart: Item) {
+    const currentCart = this.getCartList();
+    currentCart.push(cart);
+    localStorage.setItem('cartItems', JSON.stringify(currentCart));
     return this.cartlist;
   }
-  clearCart(){
+  clearCart() {
     this.cartlist = [];
     return this.cartlist;
   }

@@ -4,6 +4,7 @@ export class Item{
     price: number;
     url: string;
     description: string;
+    value: number;
 
     constructor(){
         this.id = 1;
@@ -11,5 +12,6 @@ export class Item{
         this.price = 1;
         this.url = "";
         this.description = "";
+        this.value = 1;
     }
 }
