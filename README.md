@@ -3,7 +3,7 @@ This is an app that displays a list of products and you can add to cart. You can
 
 ## Running the Project
 
-Run `ng serve`. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+To run the project first run `npm install` then run `ng serve`. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 

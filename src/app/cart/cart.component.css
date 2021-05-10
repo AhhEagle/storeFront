@@ -67,3 +67,8 @@ img {
 .btn {
   margin: 10px 0;
 }
+.remove{
+  background-color: red;
+  padding:0 5px;
+  border-radius: 50%;
+}

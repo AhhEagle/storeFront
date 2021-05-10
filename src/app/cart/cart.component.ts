@@ -44,4 +44,20 @@ export class CartComponent implements OnInit {
     }
     location.href='/confirmed'
   }
+  remove(d:number){
+    alert(d)
+  const newCart: Item[] =  this.cartService.getCartList().filter((u)=>{
+       this. total = this.total -  (u.price * u.value);
+      return u.id != d
+    });
+    var newtotal = 0
+    newCart.forEach(cart => {
+      newtotal += cart.price * cart.value;
+    });
+    this.cartList = newCart;
+    localStorage.setItem('cartItems', JSON.stringify(newCart));
+
+    return (this.total = newtotal);
+  }
+    
 }

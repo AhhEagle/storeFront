@@ -4,7 +4,7 @@
             <div *ngFor="let cart of cartList" class="item">
                 <img src="{{ cart.url }}" alt="">
                 <div class="details">
-                    <h5>{{cart.name}}</h5>
+                    <h5>{{cart.name}} <span (click)="remove(cart.id)" class="remove"> - </span></h5>
                     <p id="tv">{{ cart.price * cart.value }}</p>
                     <p>Amount  <input type="number" name="" id="" placeholder="{{ cart.value }}">
                         <!-- <select name="" id="">
